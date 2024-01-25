@@ -24,7 +24,7 @@ variable "use_default_event_pattern" {
 
 variable "sns_kms_encryption" {
   type        = bool
-  default     = false
+  default     = true
   description = "Enabled KMS CMK encryption at rest for SNS Topic"
 }
 
