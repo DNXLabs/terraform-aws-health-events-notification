@@ -21,3 +21,14 @@ variable "use_default_event_pattern" {
   type        = bool
   default     = true
 }
+
+variable "sns_kms_encryption" {
+  type        = bool
+  default     = false
+  description = "Enabled KMS CMK encryption at rest for SNS Topic"
+}
+
+variable "sns_topic_name" {
+  description = "Topic name (optional - creates SNS topic)"
+  default     = ""
+}
