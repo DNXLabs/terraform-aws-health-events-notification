@@ -14,7 +14,7 @@ locals {
 }
 
 resource "aws_cloudwatch_event_rule" "console" {
-  count             = var.sns_topic_name != "" ? 1 : 0
+  count       = var.sns_topic_name != "" ? 1 : 0
   name        = "AWSHealthEventRule"
   description = "EventBridge rule for AWS Health events"
 
@@ -27,7 +27,7 @@ resource "aws_sns_topic" "health_event_topic" {
 }
 
 resource "aws_cloudwatch_event_target" "sns" {
-  count             = var.sns_topic_name != "" ? 1 : 0
+  count     = var.sns_topic_name != "" ? 1 : 0
   rule      = aws_cloudwatch_event_rule.console[count.index].name
   target_id = "SendToSNS"
   arn       = aws_sns_topic.health_event_topic[count.index].arn
