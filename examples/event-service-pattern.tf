@@ -4,4 +4,5 @@ module "aws_health_config" {
   webhook_endpoint       = ""  # Webhook URL for notifications (automatic confirmation)
   aws_health_services    = ["RDS","EC2","S3"]  # List of AWS services to filter AWS Health events
   use_default_event_pattern = false
+  sns_topic_name = "AWSHealthEventSNS"
 }
