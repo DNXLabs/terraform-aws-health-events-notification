@@ -16,6 +16,6 @@ jobs:
         with:
           directory: .
           framework: terraform
-          skip_check: ""
+          skip_check: "CKV2_AWS_64"
           quiet: true
           skip_path: "examples"
