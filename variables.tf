@@ -29,6 +29,7 @@ variable "sns_kms_encryption" {
 }
 
 variable "sns_topic_name" {
+  type        = string
   description = "Topic name (optional - creates SNS topic)"
   default     = ""
 }
