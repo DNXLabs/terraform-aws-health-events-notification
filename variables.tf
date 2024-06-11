@@ -1,11 +1,17 @@
+variable "event_rule_name" {
+  description = "Name for the AWS Health Event Rule"
+  type        = string
+  default     = "AWSHealthEventRule"
+}
+
 variable "email_endpoint" {
-  description = "Email address for notifications (optional)"
+  description = "Email address for notifications (optional) - only when sns_topic_name is set"
   type        = string
   default     = ""
 }
 
 variable "webhook_endpoint" {
-  description = "Webhook URL for notifications (optional)"
+  description = "Webhook URL for notifications (optional) - only when sns_topic_name is set"
   type        = string
   default     = ""
 }
@@ -31,5 +37,11 @@ variable "sns_kms_encryption" {
 variable "sns_topic_name" {
   type        = string
   description = "Topic name (optional - creates SNS topic)"
+  default     = ""
+}
+
+variable "sns_topic_arn" {
+  type        = string
+  description = "Topic ARN (optional - uses an existing SNS topic)"
   default     = ""
 }
