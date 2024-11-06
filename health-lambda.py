@@ -7,7 +7,9 @@ def lambda_handler(event, context):
     topic_arn = os.environ.get('SNS_TOPIC_ARN')
     event_rule_name = os.environ.get('EVENT_RULE_NAME')
 
-    event_subject = f'ALARM: {event_rule_name}: {event["detail"]["eventTypeCode"]}'
+    rule_base = event_rule_name.replace("dnx-aws-health-event-", "").replace("-ec2-instance-state-change", "")
+    
+    event_subject = f' ALARM: "dnx-aws-health-event-ec2-instance-state-change-{rule_base}" in {event["region"]}'
     event_message = "".join(
         [
             f'{event["detail"]["service"]}\n',
@@ -18,15 +20,15 @@ def lambda_handler(event, context):
     )
 
     response = sns_client.publish(
-      TopicArn=topic_arn,
-      Message=event_message,
-      Subject=event_subject,
-      MessageAttributes={
-        'string': {
-          'DataType': 'String',
-          'StringValue': 'String'
+        TopicArn=topic_arn,
+        Message=event_message,
+        Subject=event_subject,
+        MessageAttributes={
+            'string': {
+                'DataType': 'String',
+                'StringValue': 'String'
+            }
         }
-      }
     )
 
     print(response)
