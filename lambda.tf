@@ -48,6 +48,7 @@ resource "aws_lambda_function" "health_lambda" {
     variables = {
       SNS_TOPIC_ARN   = var.sns_topic_name != "" ? aws_sns_topic.health_event_topic[0].arn : var.sns_topic_arn
       EVENT_RULE_NAME = var.event_rule_name
+      ALARM_SUBJECT_PREFIX = var.alarm_subject_prefix
     }
   }
 }
