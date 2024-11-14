@@ -11,9 +11,6 @@ def lambda_handler(event, context):
     # Get customer name from environment variable
     customer_name = event_rule_name.split('-')[-1]
     
-    # Format the event rule name with customer name
-    formatted_rule_name = f"dnx-aws-health-event-{event['detail']['eventTypeCode']}-{customer_name}"
-    
     # Format the subject line with a single set of brackets
     event_subject = f' ALARM: "{alarm_subject_prefix}-aws-health-event-{event["detail"]["eventTypeCode"]}-{customer_name}" in {event["region"]}'
     

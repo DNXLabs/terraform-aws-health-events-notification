@@ -46,7 +46,7 @@ variable "sns_topic_arn" {
   default     = ""
 }
 
-variable "alarm_subject_prefix " {
+variable "alarm_subject_prefix" {
   type        = string
   description = "Alarm prefix name"
   default     = ""
