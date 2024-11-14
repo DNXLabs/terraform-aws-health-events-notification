@@ -45,3 +45,9 @@ variable "sns_topic_arn" {
   description = "Topic ARN (optional - uses an existing SNS topic)"
   default     = ""
 }
+
+variable "alarm_subject_prefix" {
+  type        = string
+  description = "Alarm prefix name"
+  default     = ""
+}
