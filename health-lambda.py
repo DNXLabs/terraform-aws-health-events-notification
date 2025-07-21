@@ -1,13 +1,14 @@
 import boto3
 import os
 import logging
+import json
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 def lambda_handler(event, context):
 
-    logger.info(f"Received event: {event}")
+    logger.info(f"Received event: {json.dumps(event)}")
 
     sns_client = boto3.client('sns')
     topic_arn = os.environ.get('SNS_TOPIC_ARN')
