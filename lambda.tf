@@ -4,10 +4,10 @@ data "archive_file" "health_lambda" {
   output_path = "${path.module}/health-lambda-function-payload.zip"
 }
 
+resource "aws_lambda_function" "health_lambda" {
 #checkov:skip=CKV_AWS_117:No need to deploy lambda inside VPC
 #checkov:skip=CKV_AWS_173:No need to encrypt env vars
 #checkov:skip=CKV_AWS_50:Lambda is simple, no need for x-ray
-resource "aws_lambda_function" "health_lambda" {
   filename                       = "${path.module}/health-lambda-function-payload.zip"
   function_name                  = var.event_rule_name
   role                           = aws_iam_role.health_lambda_iam.arn
