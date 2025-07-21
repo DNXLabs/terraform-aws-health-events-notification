@@ -5,7 +5,7 @@ import logging
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
-def lambda_handler(event, _):
+def lambda_handler(event, context):
 
     logger.info(f"Received event: {event}")
 
@@ -18,14 +18,14 @@ def lambda_handler(event, _):
     logger.info(f"Using Event Rule Name: {event_rule_name}")
     logger.info(f"Using Alarm Subject Prefix: {alarm_subject_prefix}")
 
-    
+ 
     # Get customer name from environment variable
     customer_name = event_rule_name.split('-')[-1]
     logger.info(f"Extracted customer name: {customer_name}")
-    
+ 
     # Format the subject line with a single set of brackets
     event_subject = f' ALARM: "{alarm_subject_prefix}-aws-health-event-{event["detail"]["eventTypeCode"]}-{customer_name}" in {event["region"]}'
-    
+ 
 
     logger.info(f"Formatted event subject: {event_subject}")
     event_message = "".join(
@@ -36,7 +36,7 @@ def lambda_handler(event, _):
             event["detail"]["eventDescription"][0]["latestDescription"],
         ]
     )
-    
+
     try:
         response = sns_client.publish(
             TopicArn=topic_arn,
@@ -52,3 +52,4 @@ def lambda_handler(event, _):
         logger.info(response)
     except Exception as err:
         logger.error(f"Error publing SNS message: {err}")
+
