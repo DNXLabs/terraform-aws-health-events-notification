@@ -51,3 +51,10 @@ variable "alarm_subject_prefix" {
   description = "Alarm prefix name"
   default     = ""
 }
+
+variable "runtime" {
+  type        = string
+  default     = "python3.12"
+  description = "Runtime of lambda function"
+}
+
